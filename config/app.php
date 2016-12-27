@@ -167,7 +167,7 @@ return [
          * Package Service Providers...
          */
 
-        //
+        Invisnik\LaravelSteamAuth\SteamServiceProvider::class,
 
         /*
          * Application Service Providers...
