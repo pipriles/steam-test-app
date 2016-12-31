@@ -1,20 +1,18 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Steam App</title>
+</head>
+<body ng-app="steamApp">
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+	<div ng-view>
+		<span>Loading...</span>
+	</div>
 
-                <div class="panel-body">
-                    You are logged in!
-                    <h5> {{ $username }} </h5>
-                    <p> {{ $avatar }} </p>
-                    <p> {{ $steamid }} </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-cookies.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js"></script>
+	<script type="text/javascript" src="{{ url('/app/app.js') }}"></script>
+	<script type="text/javascript" src="{{ url('/app/profile/controller.js') }}"></script>
+</body>
+</html>

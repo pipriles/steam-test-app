@@ -5,11 +5,11 @@ return [
     /*
      * Redirect URL after login
      */
-    'redirect_url' => '/',
+    'redirect_url' => '/auth',
     /*
      * API Key (http://steamcommunity.com/dev/apikey)
      */
-    'api_key' => 'C31532D4AFB7E45F8EF3B7AA964314F1',
+    'api_key' => '5A45BE053DE1B319837F2F18D0DF5881',
     /*
      * Is using https ?
      */
