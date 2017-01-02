@@ -11,7 +11,10 @@
 |
 */
 
-use Invisnik\LaravelSteamAuth\SteamAuth;
-
 Route::get('/', 'HomeController@index');
 Route::get('/auth', 'LoginController@index');
+Route::get('/home', 'HomeController@index');
+Route::get('/logged', 'LoginController@is_logged');
+Route::get('/logout', 'LoginController@logout');
+
+Auth::routes();

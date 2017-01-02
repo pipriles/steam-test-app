@@ -168,6 +168,7 @@ return [
          */
 
         Invisnik\LaravelSteamAuth\SteamServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
         /*
          * Application Service Providers...

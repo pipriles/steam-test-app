@@ -4,8 +4,9 @@ angular.module('steamApp', ['ngRoute', 'ngCookies']) /* Cookies and routes */
 
 	$routeProvider
 	.when('/', {
-		templateUrl: '/app/profile/index.html',
-		controller: 'profileCtrl'
+		templateUrl: '/app/home/index.html',
+		controller: 'homeCtrl'
 	})
 	.otherwise('/');
+
 });
