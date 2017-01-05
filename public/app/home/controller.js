@@ -4,7 +4,6 @@ angular.module('steamApp')
 
 	/* Manipulate cookies or something */
 	$scope.username = 'pipriles';
-
-	
+	$scope.jwt = localStorage.jwt;
 	
 }]);

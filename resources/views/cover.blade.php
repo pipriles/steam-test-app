@@ -17,11 +17,11 @@
         background-size: cover;
     }
 
-    a {
+    .log-in-url {
         text-decoration: none;
     }
 
-    a:hover {
+    #log-in-url:hover {
         text-decoration: none;
         color: #cccccc;
     }
@@ -35,7 +35,7 @@
         Steam
     </div>
     <div class="w3-display-middle">
-        <h1 class="w3-center w3-jumbo w3-animate-top"><a href="{{ url('/auth') }}">Log in</a></h1>
+        <h1 class="w3-center w3-jumbo w3-animate-top"><a class="log-in-url" href="{{ url('/auth') }}">Log in</a></h1>
         <hr class="w3-border-grey" style="margin:auto;width:40%">
         <p class="w3-large w3-center">This site not associated with Valve Corp.</p>
     </div>

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Tymon\JWTAuth\JWTAuth;
 use Invisnik\LaravelSteamAuth\SteamAuth;
-use Illuminate\Http\Request;
+
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Facades\JWTFactory;
 use Session;
+use Response;
 
 class LoginController extends Controller
 {
@@ -21,21 +23,17 @@ class LoginController extends Controller
             return $this->steam->redirect();
 
         $info = $this->steam->getUserInfo();
-        if (!is_null($info)) {
 
-            $data = [
-                'username'  => $info->personaname,
-                'avatar'    => $info->avatarfull,
-                'steamid'   => $info->steamID64
-            ];
-
-            // Create a cookie or a jwt
-            // Redirect the user to their home
-            session($data);
-            return view('home', $data);
+        if (is_null($info)) {
+            return Response::json(['error' => 'No info'], 400);
         }
 
-        // Let the home do the logic
+        $claims = ['steamid' => $info->steamID64];
+        $payload = JWTFactory::make($claims);
+        $token = JWTAuth::encode($payload)->get();
+        
+        return view('jwt_redirect', compact('token'));
+        // return view('home', $data);
     }
 
     public function is_logged() {

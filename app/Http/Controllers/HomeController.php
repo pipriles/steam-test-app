@@ -16,13 +16,6 @@ class HomeController extends Controller
     }
 
     public function index() {
-        if (session('steamid', ''))
-            return $this->home();
-        else
-            return view('cover');
-    }
-
-    public function home() {
         return view('home');
     }
 }
