@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+use App\User;
 
 use Invisnik\LaravelSteamAuth\SteamAuth;
-
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Facades\JWTFactory;
-use Session;
 use Response;
 
 class LoginController extends Controller
@@ -28,20 +31,14 @@ class LoginController extends Controller
             return Response::json(['error' => 'No info'], 400);
         }
 
-        $claims = ['steamid' => $info->steamID64];
-        $payload = JWTFactory::make($claims);
+        $steamid = $info->steamID64;
+
+        User::firstOrCreate(compact('steamid'));
+
+        $payload = JWTFactory::sub($steamid)->make();
         $token = JWTAuth::encode($payload)->get();
         
+        /* Store the token on local storage */
         return view('jwt_redirect', compact('token'));
-        // return view('home', $data);
-    }
-
-    public function is_logged() {
-        return session('steamid', '');
-    }
-
-    public function logout() {
-        Session::flush();
-        redirect('/');
     }
 }

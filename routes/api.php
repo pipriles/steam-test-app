@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,12 @@ use Illuminate\Http\Request;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+Route::get('/me', function() {
+
+	$payload = JWTAuth::parseToken()->getPayload();
+	$steamid = $payload->get('sub');
+
+	return Response::json(compact('steamid'));
+
+})->middleware('jwt.auth');

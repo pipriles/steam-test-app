@@ -12,6 +12,6 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('/auth', 'LoginController@index');
+Route::get('/auth', 'Auth\LoginController@index');
 
 // Auth::routes(); ????

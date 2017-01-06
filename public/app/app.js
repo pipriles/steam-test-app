@@ -5,7 +5,8 @@ angular.module('steamApp', ['ngRoute', 'angularCSS']) /* Cookies and routes */
 	$routeProvider
 	.when('/', {
 		templateUrl: '/app/cover/index.html',
-		controller: 'coverCtrl'
+		controller: 'coverCtrl',
+		css: '/assets/css/cover.css'
 	})
 	.when('/home', {
 		templateUrl: '/app/home/index.html',

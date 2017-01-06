@@ -155,7 +155,7 @@ return [
         |
         */
 
-        'auth' => 'Tymon\JWTAuth\Providers\Auth\IlluminateAuthAdapter',
+        'auth' => 'App\JWTAuth\SteamAuth',
 
         /*
         |--------------------------------------------------------------------------

@@ -3,14 +3,11 @@
 <head>
 	<title>Steam app</title>
 	<link rel="stylesheet" type="text/css" href="{{ url('/assets/css/w3.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url('/assets/css/cover.css') }}">
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 </head>
 <body>
 
-	<ng-view>
-		<p>Loading</p>
-	</ng-view>
+	<ng-view ng-cloak></ng-view>
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js"></script>
