@@ -1,0 +1,49 @@
+body, h1   { font-family: "Raleway", sans-serif }
+body, html { height: 100% }
+
+.steam-bg {
+    min-height: 100%;
+    background-image: url('/assets/img/background.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+#search-input {
+    background: transparent;
+    color: white;
+}
+
+#search-input:focus {
+    outline: none;
+}
+
+.game-card {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.game-card:hover {
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+.search-bar {
+    display: inline-block;
+    width: 40%;
+}
+
+@media (max-width: 1000px) {
+    .search-bar {
+        display: block;
+        width: 100%;
+    }
+}
+
+.log-in-url {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.log-in-url:hover {
+	color: #cccccc;
+	cursor: pointer;
+    text-decoration: none;
+}

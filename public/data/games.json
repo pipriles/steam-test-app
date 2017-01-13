@@ -1,0 +1,34 @@
+[
+	{
+		"title": "Metal Gear Solid V",
+		"cover": "http://cdn.akamai.steamstatic.com/steam/apps/287700/header.jpg?t=1479929712"
+	},
+	{
+		"title": "Valkyria Chronicles",
+		"cover": "http://cdn.akamai.steamstatic.com/steam/apps/294860/header.jpg?t=1457556192"
+	},
+	{
+		"title": "Brawlhalla",
+		"cover": "http://cdn.edgecast.steamstatic.com/steam/apps/291550/header.jpg?t=1484168111"
+	},
+	{
+		"title": "The Witcher® 3: Wild Hunt",
+		"cover": "http://cdn.edgecast.steamstatic.com/steam/apps/292030/header.jpg?t=1479919850"
+	},
+	{
+		"title": "ARK: Survival Evolved",
+		"cover": "http://cdn.edgecast.steamstatic.com/steam/apps/346110/header.jpg?t=1483659621"
+	},
+	{
+		"title": "Undertale",
+		"cover": "http://cdn.edgecast.steamstatic.com/steam/apps/391540/header.jpg?t=1478073703"
+	},
+	{
+		"title": "Don't Starve Together",
+		"cover": "http://cdn.edgecast.steamstatic.com/steam/apps/322330/header.jpg?t=1480476000"
+	},
+	{
+		"title": "Starbound",
+		"cover": "http://cdn.edgecast.steamstatic.com/steam/apps/211820/header.jpg?t=1478088622"
+	}
+]

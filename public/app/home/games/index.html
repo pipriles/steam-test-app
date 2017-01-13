@@ -1,0 +1,19 @@
+<div class="w3-container">
+	<div class="w3-row w3-animate-opacity">
+		
+		<div ng-repeat="game in games" class="w3-padding-large w3-col s12 m6 l3">
+			<div class="game-card w3-card-8">
+				<div class="w3-center">
+					<img ng-src="{{ game.cover }}" width="100%" />
+					<h6>{{ game.title }}</h6>
+
+					<button class="w3-btn w3-green">Purchase</button>
+					<button class="w3-btn w3-red">Go Fuck Yourself</button>
+					<br>
+					<br>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

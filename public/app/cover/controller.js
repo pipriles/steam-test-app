@@ -6,7 +6,6 @@ angular.module('steamApp')
 		$scope.$apply(function() {
 			localStorage.setItem('jwt', token);
 			$location.path('/home');
-			console.log(localStorage.jwt);
 		});
 	}
 
@@ -16,14 +15,14 @@ angular.module('steamApp')
 		var conf = [];
 		conf.push('width='  + 800);
 		conf.push('height=' + 600);
-		conf.push('left='   + (screen.width - 800) / 2);
+		conf.push('left='   + (screen.width  - 800) / 2);
 		conf.push('top='    + (screen.height - 600) / 2);
 
 		var params = conf.join();
 		var urlPath = '/auth';
 
 		window.$scope = $scope;
-		window.open(urlPath, 'Test', params);
+		window.open(urlPath, 'Steam', params);
 	}
 
 }]);
