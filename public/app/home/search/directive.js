@@ -4,6 +4,6 @@ angular.module('steamApp')
 	return {
 		templateUrl: '/app/home/search/index.html',
 		restrict: 'E',
-		controller: 'gamesCtrl'
+		controller: 'searchCtrl'
 	};
 }]);

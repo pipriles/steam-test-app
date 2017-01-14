@@ -81,10 +81,16 @@ angular.module('steamApp')
 angular.module('steamApp')
 
 .controller('gamesCtrl', ['$scope', 'GmService', function ($scope, GmService) {
+	
 	GmService.getGames()
 		.then(function() {
 			$scope.games = GmService.games;
 		});
+
+	$scope.$on('searchGames', function(event, filter) {
+		$scope.games = GmService.filterGames(filter);
+	});
+
 }]);
 
 angular.module('steamApp')
@@ -92,7 +98,8 @@ angular.module('steamApp')
 .directive('gamesGallery', [function () {
 	return {
 		templateUrl: '/app/home/games/index.html',
-		restrict: 'E'
+		restrict: 'E',
+		controller: 'gamesCtrl'
 		/*
 		controller: function($scope, $element, $attrs, $transclude, otherInjectables) {
 
@@ -104,22 +111,66 @@ angular.module('steamApp')
 
 .service('GmService', ['$http', '$log', function ($http, $log) {
 	var srv = this;
-	srv.games = [];
+	srv.games = [];	
 	srv.getGames = function() {
 		return $http.get('/data/games.json')
+
 			.then(function(resp) {
-				srv.games = resp.data;
+				srv.games = resp.data; /* Should i put all in this object ? */
+				srv.cachedGames = srv.games.map(function(currentValue) {
+					return currentValue.title.replace(/\W+/i, '');
+				});	/* These are for optimize the regex lookup */
+
 			}, function(resp) {
-				$log.warn('Error! in Games Services');
+				$log.warn('Error Http in Games Services!');
 			});
 	};
+	srv.filterGames = function(search) {
+
+		if (!search || !srv.games.length) return srv.games;
+
+		var i, match, games = srv.games;
+		var keywords = search.split(/\W+/).filter(Boolean);
+		var regex = new RegExp(keywords.join('|'), 'i');
+		var results = [];
+
+		$log.debug(regex);
+		for (var i=0; i < games.length; i++) {
+
+			if (!(match = ((srv.cachedGames[i].match(regex) || []).length)))
+				continue;
+
+			results.push({
+				'gameRef': games[i],
+				'matches': match
+			});
+		}
+		results.sort(function(a, b) {
+			return -(a.matches - b.matches);
+		});
+		var algo = results.map(function(currentValue) {
+			return currentValue.gameRef;
+		});
+		$log.debug(algo);
+		return algo;
+	}
 }]);
+
+angular.module('steamApp')
+
+.controller('searchCtrl', ['$scope', function ($scope) {
+	$scope.searchValue = '';
+	$scope.searchGames = function() {
+		$scope.$parent.$broadcast('searchGames', $scope.searchValue);
+	};
+}]);
+
 angular.module('steamApp')
 
 .directive('searchBar', [function () {
 	return {
 		templateUrl: '/app/home/search/index.html',
 		restrict: 'E',
-		controller: 'gamesCtrl'
+		controller: 'searchCtrl'
 	};
 }]);
