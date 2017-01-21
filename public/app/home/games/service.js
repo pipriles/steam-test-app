@@ -2,12 +2,14 @@ angular.module('steamApp')
 
 .service('GmService', ['$http', '$log', function ($http, $log) {
 	var srv = this;
-	srv.games = [];	
+	srv.games = [];
+	srv.filtered = srv.games;
 	srv.getGames = function() {
 		return $http.get('/data/games.json')
 
 			.then(function(resp) {
-				srv.games = resp.data; /* Should i put all in this object ? */
+				/* Should i put all in this object ? */
+				srv.filtered = srv.games = resp.data;
 				srv.cachedGames = srv.games.map(function(currentValue) {
 					return currentValue.title.replace(/\W+/i, '');
 				});	/* These are for optimize the regex lookup */
@@ -18,7 +20,10 @@ angular.module('steamApp')
 	};
 	srv.filterGames = function(search) {
 
-		if (!search || !srv.games.length) return srv.games;
+		if (!search || !srv.games.length) {
+			srv.filtered = srv.games;
+			return;
+		}
 
 		var i, match, games = srv.games;
 		var keywords = search.split(/\W+/).filter(Boolean);
@@ -39,10 +44,9 @@ angular.module('steamApp')
 		results.sort(function(a, b) {
 			return -(a.matches - b.matches);
 		});
-		var algo = results.map(function(currentValue) {
+
+		srv.filtered = results.map(function(currentValue) {
 			return currentValue.gameRef;
 		});
-		$log.debug(algo);
-		return algo;
 	}
 }]);

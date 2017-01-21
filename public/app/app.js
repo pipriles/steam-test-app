@@ -7,7 +7,7 @@ angular.module('steamApp', ['ngRoute', 'ngAnimate']) /* Cookies and routes */
 .filter('summary', function() {
 	return function(str, limit, end) {
 		limit = parseInt(limit, 10);
-		if (str && str.length > limit) 
+		if (str && str.length > limit)
 			return str.substr(0, limit) + (end || '...');
 		else
 			return str;

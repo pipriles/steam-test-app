@@ -2,6 +2,7 @@
 <html ng-app="steamApp">
 <head>
 	<title>Steam app</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="{{ url('/assets/css/w3.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url('/assets/css/app.css') }}">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -16,7 +17,7 @@
 		style="float: left;">
 			Steam
 		</div>
-		
+
 		<!-- Content -->
 		<ng-view></ng-view>
 
@@ -25,6 +26,8 @@
 	    </div>
 	</div>
 
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>

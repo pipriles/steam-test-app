@@ -7,7 +7,7 @@ angular.module('steamApp', ['ngRoute', 'ngAnimate']) /* Cookies and routes */
 .filter('summary', function() {
 	return function(str, limit, end) {
 		limit = parseInt(limit, 10);
-		if (str && str.length > limit) 
+		if (str && str.length > limit)
 			return str.substr(0, limit) + (end || '...');
 		else
 			return str;
@@ -81,14 +81,37 @@ angular.module('steamApp')
 angular.module('steamApp')
 
 .controller('gamesCtrl', ['$scope', 'GmService', function ($scope, GmService) {
-	
+
+	/* I should use "this" */
+	var page = 0;
+
+	$scope.someGames = [];
+
+	/* Not sure if this should be here */
+	$scope.incPage = function() {
+		if (page < GmService.filtered.length) {
+			page += 1;
+			$scope.someGames = GmService.filtered.slice(page, page + 8);
+		}
+		console.log($scope.someGames);
+	};
+
+	$scope.decPage = function() {
+		if (page > 0) {
+			page -= 1;
+			$scope.someGames = GmService.filtered.slice(page, page + 8);
+		}
+	};
+
 	GmService.getGames()
 		.then(function() {
-			$scope.games = GmService.games;
+			$scope.someGames = GmService.games;
 		});
 
 	$scope.$on('searchGames', function(event, filter) {
-		$scope.games = GmService.filterGames(filter);
+		GmService.filterGames(filter);
+		$scope.someGames = GmService.filtered;
+		page = 0;
 	});
 
 }]);
@@ -96,6 +119,7 @@ angular.module('steamApp')
 angular.module('steamApp')
 
 .directive('gamesGallery', [function () {
+
 	return {
 		templateUrl: '/app/home/games/index.html',
 		restrict: 'E',
@@ -111,12 +135,14 @@ angular.module('steamApp')
 
 .service('GmService', ['$http', '$log', function ($http, $log) {
 	var srv = this;
-	srv.games = [];	
+	srv.games = [];
+	srv.filtered = srv.games;
 	srv.getGames = function() {
 		return $http.get('/data/games.json')
 
 			.then(function(resp) {
-				srv.games = resp.data; /* Should i put all in this object ? */
+				/* Should i put all in this object ? */
+				srv.filtered = srv.games = resp.data;
 				srv.cachedGames = srv.games.map(function(currentValue) {
 					return currentValue.title.replace(/\W+/i, '');
 				});	/* These are for optimize the regex lookup */
@@ -127,7 +153,10 @@ angular.module('steamApp')
 	};
 	srv.filterGames = function(search) {
 
-		if (!search || !srv.games.length) return srv.games;
+		if (!search || !srv.games.length) {
+			srv.filtered = srv.games;
+			return;
+		}
 
 		var i, match, games = srv.games;
 		var keywords = search.split(/\W+/).filter(Boolean);
@@ -148,11 +177,10 @@ angular.module('steamApp')
 		results.sort(function(a, b) {
 			return -(a.matches - b.matches);
 		});
-		var algo = results.map(function(currentValue) {
+
+		srv.filtered = results.map(function(currentValue) {
 			return currentValue.gameRef;
 		});
-		$log.debug(algo);
-		return algo;
 	}
 }]);
 

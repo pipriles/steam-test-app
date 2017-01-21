@@ -1,17 +1,29 @@
 <div class="w3-container">
-	<div class="w3-row w3-animate-opacity">
-		
-		<div ng-repeat="game in games" class="w3-padding-large w3-col s12 m6 l3">
+
+	<div class="games-gallery w3-row w3-animate-opacity">
+
+		<div ng-repeat="game in someGames" class="w3-padding-large w3-col s12 m6 l3">
 			<div class="game-card w3-card-8">
 				<div class="w3-center">
 					<img ng-src="{{ game.cover }}" width="100%" />
-					<h6>{{ game.title }}</h6>
+					<h6 class="game-title">{{ game.title }}</h6>
 
-					<button class="w3-btn w3-green">Purchase</button>
-					<button class="w3-btn w3-red">Go Fuck Yourself</button>
+					<button class="w3-btn w3-green">Yep</button>
+					<button class="w3-btn w3-red">Nope</button>
 					<br>
 					<br>
 				</div>
+			</div>
+		</div>
+
+		<div ng-click="decPage()" class="w3-display-container left-btn-arrow w3-card-8">
+			<div class="w3-display-middle">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</div>
+		</div>
+		<div ng-click="incPage()" class="right-btn-arrow w3-card-8">
+			<div class="w3-display-middle">
+				<span class="glyphicon glyphicon-chevron-right"></span>
 			</div>
 		</div>
 

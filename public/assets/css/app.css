@@ -1,6 +1,56 @@
 body, h1   { font-family: "Raleway", sans-serif }
 body, html { height: 100% }
 
+.games-gallery {
+    margin-left: 7%;
+    margin-right: 7%;
+}
+
+.game-title {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.left-btn-arrow {
+    position: absolute;
+    top: 12.5%;
+    left: 0;
+    min-height: 75%;
+    width: 7.5%;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: center;
+}
+
+.left-btn-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    color: #cccccc;
+}
+
+.left-btn-arrow .glyphicon {
+    font-size: 2.25em;
+}
+
+.right-btn-arrow {
+    position: absolute;
+    top: 12.5%;
+    right: 0;
+    min-height: 75%;
+    width: 7.5%;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: center;
+}
+
+.right-btn-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    color: #cccccc;
+}
+
+.right-btn-arrow .glyphicon {
+    font-size: 2.25em;
+}
+
 .steam-bg {
     min-height: 100%;
     background-image: url('/assets/img/background.jpg');
@@ -23,6 +73,7 @@ body, html { height: 100% }
 
 .game-card:hover {
     background-color: rgba(0, 0, 0, 0.35);
+    cursor: pointer;
 }
 
 .search-bar {
